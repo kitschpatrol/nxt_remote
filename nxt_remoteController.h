@@ -71,6 +71,7 @@
 -(IBAction)left:(id)sender;
 -(IBAction)right:(id)sender;
 -(IBAction)stop:(id)sender;
+-(IBAction)back:(id)sender;
 
 - (void)setupInputValues:(UInt8)port;
 - (void)stopProgram;

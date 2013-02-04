@@ -324,15 +324,15 @@
 -(IBAction)left:(id)sender{
 	NSLog(@"LEFT");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorA power:100 tacholimit:0];
-	[_nxt moveServo:kNXTMotorB power:30 tacholimit:0];
+	[_nxt moveServo:kNXTMotorA power:10 tacholimit:0];
+	[_nxt moveServo:kNXTMotorB power:-10 tacholimit:0];
 }
 
 -(IBAction)right:(id)sender{
 	NSLog(@"RIGHT");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorA power:30 tacholimit:0];
-	[_nxt moveServo:kNXTMotorB power:100 tacholimit:0];
+	[_nxt moveServo:kNXTMotorA power:-10 tacholimit:0];
+	[_nxt moveServo:kNXTMotorB power:10 tacholimit:0];
 }
 
 -(IBAction)stop:(id)sender{
@@ -340,6 +340,13 @@
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
 	[_nxt moveServo:kNXTMotorA power:0 tacholimit:0];
 	[_nxt moveServo:kNXTMotorB power:0 tacholimit:0];
+}
+
+-(IBAction)back:(id)sender{
+	NSLog(@"BACK");
+	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
+	[_nxt moveServo:kNXTMotorA power:-100 tacholimit:0];
+	[_nxt moveServo:kNXTMotorB power:-100 tacholimit:0];
 }
 
 - (IBAction)startServer:(id)sender{
