@@ -73,6 +73,11 @@
 -(IBAction)stop:(id)sender;
 -(IBAction)back:(id)sender;
 
+-(IBAction)accessoryForward:(id)sender;
+-(IBAction)accessoryStop:(id)sender;
+-(IBAction)accessoryBack:(id)sender;
+
+
 - (void)setupInputValues:(UInt8)port;
 - (void)stopProgram;
 

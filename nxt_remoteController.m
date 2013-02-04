@@ -349,6 +349,32 @@
 	[_nxt moveServo:kNXTMotorB power:-100 tacholimit:0];
 }
 
+
+
+-(IBAction)accessoryForward:(id)sender{
+	NSLog(@"ACCESSORY FORWARD");
+	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
+	[_nxt moveServo:kNXTMotorC power:20 tacholimit:0];
+}
+
+-(IBAction)accessoryStop:(id)sender{
+	NSLog(@"ACCESSORY STOP");
+	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
+	[_nxt moveServo:kNXTMotorC power:0 tacholimit:0];
+}
+
+
+-(IBAction)accessoryBack:(id)sender{
+	NSLog(@"ACCESSORY BACK");
+	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
+	[_nxt moveServo:kNXTMotorC power:-20 tacholimit:0];
+}
+
+
+
+
+
+
 - (IBAction)startServer:(id)sender{
 	server = [[ServerController alloc] init];
 	[server startServer];
