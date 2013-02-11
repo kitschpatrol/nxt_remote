@@ -354,7 +354,7 @@
 -(IBAction)accessoryForward:(id)sender{
 	NSLog(@"ACCESSORY FORWARD");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorC power:20 tacholimit:0];
+	[_nxt moveServo:kNXTMotorC power:10 tacholimit:0];
 }
 
 -(IBAction)accessoryStop:(id)sender{
@@ -367,7 +367,7 @@
 -(IBAction)accessoryBack:(id)sender{
 	NSLog(@"ACCESSORY BACK");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorC power:-20 tacholimit:0];
+	[_nxt moveServo:kNXTMotorC power:-10 tacholimit:0];
 }
 
 
