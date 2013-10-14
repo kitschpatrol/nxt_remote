@@ -9,8 +9,16 @@
 
 #import "nxt_remoteController.h"
 
+@interface nxt_remoteController ()
+
+@property CGFloat speedCoefficient;
+
+@end
+
 
 @implementation nxt_remoteController
+@synthesize speedLabel;
+@synthesize speedSlider;
 
 - (id)initNXT{
 	self = [super init];
@@ -18,6 +26,7 @@
 		_nxt = [[NXT alloc] init];
 	}
 	
+    
 	return self;
 }
 
@@ -317,22 +326,22 @@
 -(IBAction)forward:(id)sender{
 	NSLog(@"FORWARD");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorA power:100 tacholimit:0];
-	[_nxt moveServo:kNXTMotorB power:100 tacholimit:0];
+	[_nxt moveServo:kNXTMotorA power:100.0 * self.speedCoefficient tacholimit:0];
+	[_nxt moveServo:kNXTMotorB power:100.0 * self.speedCoefficient tacholimit:0];
 }
 
 -(IBAction)left:(id)sender{
 	NSLog(@"LEFT");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorA power:10 tacholimit:0];
-	[_nxt moveServo:kNXTMotorB power:-10 tacholimit:0];
+	[_nxt moveServo:kNXTMotorA power:10 * self.speedCoefficient tacholimit:0];
+	[_nxt moveServo:kNXTMotorB power:-10 * self.speedCoefficient tacholimit:0];
 }
 
 -(IBAction)right:(id)sender{
 	NSLog(@"RIGHT");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorA power:-10 tacholimit:0];
-	[_nxt moveServo:kNXTMotorB power:10 tacholimit:0];
+	[_nxt moveServo:kNXTMotorA power:-10 * self.speedCoefficient tacholimit:0];
+	[_nxt moveServo:kNXTMotorB power:10 * self.speedCoefficient tacholimit:0];
 }
 
 -(IBAction)stop:(id)sender{
@@ -345,8 +354,24 @@
 -(IBAction)back:(id)sender{
 	NSLog(@"BACK");
 	[_nxt setOutputState:kNXTMotorAll power:0 mode:kNXTCoast regulationMode:kNXTRegulationModeIdle turnRatio:0 runState:kNXTMotorRunStateIdle tachoLimit:0];
-	[_nxt moveServo:kNXTMotorA power:-100 tacholimit:0];
-	[_nxt moveServo:kNXTMotorB power:-100 tacholimit:0];
+	[_nxt moveServo:kNXTMotorA power:-100 * self.speedCoefficient tacholimit:0];
+	[_nxt moveServo:kNXTMotorB power:-100 * self.speedCoefficient tacholimit:0];
+}
+
+- (IBAction)speed:(id)sender {
+    NSSlider* slider = (NSSlider *)sender;
+
+    NSLog(@"Speed Changed: %f", [slider floatValue]);
+    //[self setSpeedCoefficient:<#(CGFloat)#>]
+    [self updateSpeedLabel];
+}
+
+- (void)updateSpeedLabel
+{
+    CGFloat sliderValue = [[self speedSlider] floatValue];
+    [[self speedLabel] setStringValue:[NSString stringWithFormat:@"%.0f", sliderValue]];
+    CGFloat sliderX = 8 + self.speedSlider.frame.origin.x + ((sliderValue / 100.0) * (self.speedSlider.frame.size.width - 16));
+    self.speedLabel.frame = CGRectMake(sliderX - (self.speedLabel.frame.size.width / 2), self.speedLabel.frame.origin.y, self.speedLabel.frame.size.width, self.speedLabel.frame.size.height);
 }
 
 

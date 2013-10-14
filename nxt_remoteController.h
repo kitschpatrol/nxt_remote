@@ -51,6 +51,8 @@
     IBOutlet NSButton* getInputValuesPort3;
     IBOutlet NSButton* getInputValuesPort4;
     IBOutlet NSButton* setOutputState;
+    __unsafe_unretained NSTextField *speedLabel;
+    __unsafe_unretained NSSlider *speedSlider;
 }
 
 - (IBAction)showSelectSheet:(id)sender;
@@ -72,6 +74,9 @@
 -(IBAction)right:(id)sender;
 -(IBAction)stop:(id)sender;
 -(IBAction)back:(id)sender;
+-(IBAction)speed:(id)sender;
+@property (unsafe_unretained) IBOutlet NSTextField *speedLabel;
+@property (unsafe_unretained) IBOutlet NSSlider *speedSlider;
 
 -(IBAction)accessoryForward:(id)sender;
 -(IBAction)accessoryStop:(id)sender;
