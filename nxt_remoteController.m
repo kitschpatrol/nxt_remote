@@ -24,6 +24,7 @@
 	self = [super init];
 	if (self) {
 		_nxt = [[NXT alloc] init];
+        _speedCoefficient = 0.5;
 	}
 	
     
@@ -360,9 +361,8 @@
 
 - (IBAction)speed:(id)sender {
     NSSlider* slider = (NSSlider *)sender;
-
     NSLog(@"Speed Changed: %f", [slider floatValue]);
-    //[self setSpeedCoefficient:<#(CGFloat)#>]
+    [self setSpeedCoefficient:([slider floatValue] / 100.0)];
     [self updateSpeedLabel];
 }
 
